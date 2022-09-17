@@ -1,4 +1,6 @@
 package ships;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Comparator;
 
 public class ships {
@@ -6,7 +8,11 @@ public class ships {
         private String type;
         private int weight;
         private int date;
+
         private String[] time;
+
+        private int craneNum;
+
 
         public ships() {
          super();
@@ -17,6 +23,7 @@ public class ships {
             this.weight = weight;
             this.date = date;
             this.time = time;
+            this.craneNum = 0;
         }
 //        public static final Comparator<ships> compareDate = new Comparator<ships>() {
 //            @Override
@@ -56,6 +63,14 @@ public class ships {
             return new ships(shipName, shipType, shipDateDay, shipDatetime, shipWeight);
         }
 
+        public int getCraneNum() {
+            return this.craneNum;
+        }
+
+        public void incrCraneNum () {
+            this.craneNum++;
+        }
+        @JsonIgnore
         public String getShipInfo() {
             System.out.print("Ship info: ");
             System.out.print("Name: " + this.name+" ");
@@ -85,15 +100,27 @@ public class ships {
             return this.date;
         }
 
+    // Добавляем getter для нужной нам генерации поля времени в JSON
+        public String[] getTime() {
+            return this.time;
+        }
+
+        void setDate(int Date) {
+            this.date=Date;
+        }
+        @JsonIgnore
         public String getHour() {
             return  this.time[0];
         }
+        @JsonIgnore
         void setHour(String Hour) {
             this.time[0]=Hour;
         }
+        @JsonIgnore
         void setMinute(String Minute) {
             this.time[1] = Minute;
         }
+        @JsonIgnore
         public String getMinute() {
         return  this.time[1];
         }
@@ -104,5 +131,9 @@ public class ships {
 
         public int getWeight() {
             return this.weight;
+        }
+
+        void setWeight(int Weight) {
+            this.weight = Weight;
         }
 }

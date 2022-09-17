@@ -1,6 +1,9 @@
 package ships;
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 
-import org.codehaus.jackson.map.ObjectMapper;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
@@ -28,16 +31,18 @@ public class main {
                 schedule.printSchedule(sched);
 
                 anotherShip(sched);
-
+                System.out.println(sched);
                 ObjectMapper objectMapper = new ObjectMapper();
+                ObjectWriter writer = objectMapper.writer(new DefaultPrettyPrinter());
                 File scheduleFile = new File ("target/schedule.json");
                 try {
-                        objectMapper.writeValue(scheduleFile, sched);
+                        writer.writeValue(scheduleFile, sched);
                         System.out.println("Successfully Copied JSON Object to File...");
                 } catch(Exception e){
                         System.out.println(e);
 
                 }
+                cranes.readsched();
 
 
         }
