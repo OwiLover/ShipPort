@@ -1,0 +1,141 @@
+[ {
+  "name" : "Avrora",
+  "type" : "Dry",
+  "weight" : 28,
+  "date" : 1,
+  "time" : [ "1", "5" ],
+  "craneNum" : 0
+}, {
+  "name" : "Alyaska",
+  "type" : "Dry",
+  "weight" : 51,
+  "date" : 1,
+  "time" : [ "17", "21" ],
+  "craneNum" : 0
+}, {
+  "name" : "Alyaska",
+  "type" : "Container",
+  "weight" : 92,
+  "date" : 2,
+  "time" : [ "2", "0" ],
+  "craneNum" : 0
+}, {
+  "name" : "Alyaska",
+  "type" : "Liquid",
+  "weight" : 60,
+  "date" : 7,
+  "time" : [ "7", "3" ],
+  "craneNum" : 0
+}, {
+  "name" : "Bonaventur",
+  "type" : "Container",
+  "weight" : 33,
+  "date" : 8,
+  "time" : [ "22", "44" ],
+  "craneNum" : 0
+}, {
+  "name" : "Arizona",
+  "type" : "Liquid",
+  "weight" : 68,
+  "date" : 12,
+  "time" : [ "20", "5" ],
+  "craneNum" : 0
+}, {
+  "name" : "Arabella",
+  "type" : "Liquid",
+  "weight" : 76,
+  "date" : 15,
+  "time" : [ "5", "53" ],
+  "craneNum" : 0
+}, {
+  "name" : "Happy Rodjer",
+  "type" : "Container",
+  "weight" : 36,
+  "date" : 15,
+  "time" : [ "11", "30" ],
+  "craneNum" : 0
+}, {
+  "name" : "Avrora",
+  "type" : "Container",
+  "weight" : 90,
+  "date" : 15,
+  "time" : [ "13", "41" ],
+  "craneNum" : 0
+}, {
+  "name" : "Archem",
+  "type" : "Container",
+  "weight" : 18,
+  "date" : 15,
+  "time" : [ "15", "24" ],
+  "craneNum" : 0
+}, {
+  "name" : "Archem",
+  "type" : "Liquid",
+  "weight" : 16,
+  "date" : 16,
+  "time" : [ "17", "41" ],
+  "craneNum" : 0
+}, {
+  "name" : "Alyaska",
+  "type" : "Container",
+  "weight" : 68,
+  "date" : 18,
+  "time" : [ "4", "25" ],
+  "craneNum" : 0
+}, {
+  "name" : "Arabella",
+  "type" : "Dry",
+  "weight" : 37,
+  "date" : 18,
+  "time" : [ "20", "31" ],
+  "craneNum" : 0
+}, {
+  "name" : "Arizona",
+  "type" : "Liquid",
+  "weight" : 53,
+  "date" : 19,
+  "time" : [ "0", "28" ],
+  "craneNum" : 0
+}, {
+  "name" : "Arabella",
+  "type" : "Liquid",
+  "weight" : 36,
+  "date" : 21,
+  "time" : [ "10", "5" ],
+  "craneNum" : 0
+}, {
+  "name" : "Dmitriy",
+  "type" : "Liquid",
+  "weight" : 91,
+  "date" : 24,
+  "time" : [ "13", "55" ],
+  "craneNum" : 0
+}, {
+  "name" : "Delphin",
+  "type" : "Liquid",
+  "weight" : 45,
+  "date" : 26,
+  "time" : [ "12", "45" ],
+  "craneNum" : 0
+}, {
+  "name" : "Lincoln",
+  "type" : "Container",
+  "weight" : 97,
+  "date" : 28,
+  "time" : [ "21", "2" ],
+  "craneNum" : 0
+}, {
+  "name" : "Archem",
+  "type" : "Container",
+  "weight" : 57,
+  "date" : 29,
+  "time" : [ "3", "24" ],
+  "craneNum" : 0
+}, {
+  "name" : "Avrora",
+  "type" : "Container",
+  "weight" : 58,
+  "date" : 30,
+  "time" : [ "3", "51" ],
+  "craneNum" : 0
+} ]

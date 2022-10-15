@@ -1,0 +1,13 @@
+{
+  "Longest unload delay from Container" : "0 22 56",
+  "Fluid cranes" : "1",
+  "Container cranes" : "1",
+  "Average queue wait time" : "2 2 7",
+  "Total Bill" : "287200",
+  "Longest unload delay from Dry" : "0 22 52",
+  "Average queue size" : "2",
+  "Dry cranes" : "1",
+  "Total ships unloaded" : "44",
+  "Average unload delay" : "0 13 13",
+  "Longest unload delay from Fluid" : "0 23 18"
+}

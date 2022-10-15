@@ -128,7 +128,7 @@ public class cranes {
 //            this.minute=Minute;
 //        }
 //    }
-    static class ShipPort extends Thread {
+    public static class ShipPort extends Thread {
         private volatile List<ships> shipsList;
 
         public void setShipsList(List<ships> ships) {
@@ -185,6 +185,11 @@ public class cranes {
                     prevDay = Day;
                 }
             }
+
+            craneStationDry.Finish();
+            craneStationFluid.Finish();
+            craneStationContainer.Finish();
+
             Thread.sleep(10000);
             System.out.println(" ");
             System.out.println("Simulation ended...");
@@ -322,28 +327,30 @@ public class cranes {
         }
     }
 
-    static class CraneStation extends Thread {
+    public static class CraneStation extends Thread {
         private int craneCount = 1;
 
         private boolean isNew = false;
 
         private volatile List<ships> shipsList;
 
-        private List<Integer> arrivedCheck;
+        public List<Integer> arrivedCheck;
 
-        private List<Long> delayCheck;
+        public List<Long> delayCheck;
 
         private volatile int craneUnload;
 
 
         private long startTime;
 
-        private int unloadShipCount;
+        public int unloadShipCount;
 
-        private List<Long> unloadDelayList;
-        private long longestUnloadDelay;
+        public List<Long> unloadDelayList;
+        public long longestUnloadDelay;
 
-        private long totalBill;
+        public long totalBill;
+
+        private boolean isFinished;
 
         public void setParams(List<ships> shipsList, int craneUnload, long startTime) {
             this.shipsList=shipsList;
@@ -355,10 +362,15 @@ public class cranes {
             this.unloadDelayList = new ArrayList<>();
             this.longestUnloadDelay = 0;
             this.totalBill = 0;
+            this.isFinished = false;
         }
 
         public int getCraneCount() {
             return this.craneCount;
+        }
+
+        public void Finish() {
+            this.isFinished = true;
         }
 
         private void increaseCraneCount() {
@@ -381,7 +393,7 @@ public class cranes {
             for (int i = 0; i<cranesList.size();i++) {
                 cranesList.get(i).start();
             }
-            while (!shipsList.isEmpty() || !shipsArrived.isEmpty() || !shipsInProgress.isEmpty() && System.currentTimeMillis() - startTime < 43200) {
+            while ( !isFinished && (!shipsList.isEmpty() || !shipsArrived.isEmpty() || !shipsInProgress.isEmpty())) {
                 for (int i = 0; i < shipsList.size(); i++) {
                     int minute = Integer.parseInt(shipsList.get(i).getMinute());
                     int hour = Integer.parseInt(shipsList.get(i).getHour())*60;
@@ -470,7 +482,7 @@ public class cranes {
                         }
                 }
             }
-            Thread.sleep(4320);
+//            Thread.sleep(4320);
             System.out.println("Station finished unload!");
             for (int i = 0; i< cranesList.size(); i++) {
                 cranesList.get(i).setUnactive();
@@ -498,26 +510,26 @@ public class cranes {
         }
     }
 
-    static class Cranes extends Thread {
+    public static class Cranes extends Thread {
         private final long unload;
-        private boolean isFree;
+        public boolean isFree;
 
-        private boolean isBusy;
+        public boolean isBusy;
         private boolean isActive;
 
-        private boolean isDual;
+        public boolean isDual;
 
         private volatile int i;
-        private int unloadCount;
-        private volatile ships ship;
+        public int unloadCount;
+        public volatile ships ship;
 
-        private long bill;
+        public long bill;
 
         private volatile List<ships> shipsInProgress;
 
-        private List<Long> delayList;
-        private List<Long> unloadDelayList;
-        private long longestUnloadDelay;
+        public List<Long> delayList;
+        public List<Long> unloadDelayList;
+        public long longestUnloadDelay;
 
         private long startTime;
         private long endTime;
@@ -610,13 +622,13 @@ public class cranes {
                     while (endTime>System.currentTimeMillis()-startTime && ship.getWeight() !=0) {
                         int k;
                         k = shipsInProgress.indexOf(ship);
-                        if (shipsInProgress.get(k).getCraneNum()==2 && i == 0 && !isDual) {
+                        if (k!=-1 && k < shipsInProgress.size()-1 && shipsInProgress.get(k).getCraneNum()==2 && i == 0 && !isDual) {
                             endTime = endTime - ((endTime - (System.currentTimeMillis()-startTime))/2);
                             System.out.println(" New unload finish day: " + (int)((endTime/1440)+1));
                             i++;
                         }
                     }
-                    if (!isDual) {
+                    if (!isDual && isActive) {
                         System.out.println(" Crane unloaded " + this.ship.getName());
                         this.unloadCount += 1;
                         System.out.println(" Already unloaded " + this.unloadCount + " ships");
@@ -624,9 +636,11 @@ public class cranes {
                     isFree=true;
                     isBusy = false;
                     this.ship.setWeight(0);
-                    synchronized (this) {
-                        this.wait();
-                        isBusy = true;
+                    if (isActive) {
+                        synchronized (this) {
+                            this.wait();
+                            isBusy = true;
+                        }
                     }
 
                 }
